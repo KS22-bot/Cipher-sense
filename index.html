@@ -1,0 +1,228 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="CipherSense is a private, static password intelligence dashboard with strength analysis, entropy, crack-time estimates, breach checking, and secure password generation."
+    />
+    <title>CipherSense | Password Intelligence Dashboard</title>
+    <link rel="preconnect" href="https://unpkg.com" />
+    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/animations.css" />
+    <script defer src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+    <script type="module" src="js/app.js"></script>
+  </head>
+  <body>
+    <div class="grid-bg" aria-hidden="true"></div>
+    <div class="particles" aria-hidden="true">
+      <span></span><span></span><span></span><span></span><span></span><span></span>
+    </div>
+
+    <header class="site-header">
+      <a class="brand" href="#home" aria-label="CipherSense home">
+        <span class="brand-mark"><i data-lucide="shield-check"></i></span>
+        <span>CipherSense</span>
+      </a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="main-nav" aria-label="Open navigation">
+        <i data-lucide="menu"></i>
+      </button>
+      <nav id="main-nav" class="main-nav" aria-label="Primary navigation">
+        <a href="#home">Home</a>
+        <a href="#about">Security</a>
+        <a href="#generator">Generator</a>
+        <a href="#privacy">Privacy</a>
+        <a href="#settings">Settings</a>
+      </nav>
+    </header>
+
+    <main>
+      <section id="home" class="hero section">
+        <div class="hero-copy reveal">
+          <p class="eyebrow">Private password intelligence</p>
+          <h1>CipherSense</h1>
+          <p class="hero-text">
+            Analyze strength, entropy, breach exposure, and realistic cracking scenarios in a polished dashboard that keeps your secrets on your device.
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="#dashboard"><i data-lucide="activity"></i>Analyze password</a>
+            <a class="button ghost" href="#generator"><i data-lucide="sparkles"></i>Generate secure password</a>
+          </div>
+        </div>
+        <aside class="hero-panel glass reveal" aria-label="Security status preview">
+          <div class="signal-row">
+            <span>Local analysis</span>
+            <strong>Active</strong>
+          </div>
+          <div class="signal-bars" aria-hidden="true"><span></span><span></span><span></span><span></span></div>
+          <p>SHA-1 range checks send only the first 5 hash characters when you choose to check breach exposure.</p>
+        </aside>
+      </section>
+
+      <section id="dashboard" class="section dashboard">
+        <div class="section-heading reveal">
+          <p class="eyebrow">Main dashboard</p>
+          <h2>Password Intelligence</h2>
+          <p>Type locally, inspect instantly. Use the breach check only when you want an anonymous range query.</p>
+        </div>
+
+        <div class="analysis-layout">
+          <section class="glass analyzer reveal" aria-labelledby="password-label">
+            <div class="input-header">
+              <label id="password-label" for="password-input">Password under analysis</label>
+              <button id="toggle-visibility" class="icon-button" type="button" aria-label="Show password">
+                <i data-lucide="eye"></i>
+              </button>
+            </div>
+            <textarea
+              id="password-input"
+              class="is-masked"
+              rows="3"
+              autocomplete="new-password"
+              spellcheck="false"
+              aria-describedby="privacy-note"
+              placeholder="Type a password or passphrase..."
+            ></textarea>
+            <p id="privacy-note" class="privacy-note"><i data-lucide="lock"></i> Passwords are never stored, logged, or sent as plain text.</p>
+            <div class="action-row">
+              <button id="breach-check" class="button primary" type="button"><i data-lucide="radar"></i>Check breaches</button>
+              <button id="clear-password" class="button subtle" type="button"><i data-lucide="eraser"></i>Clear</button>
+            </div>
+            <div id="breach-message" class="breach-message neutral" role="status" aria-live="polite">
+              Breach check has not run.
+            </div>
+          </section>
+
+          <section class="glass score-card reveal" aria-label="Password score">
+            <div class="score-gauge" style="--score: 0">
+              <svg viewBox="0 0 120 120" role="img" aria-label="Password strength score">
+                <circle class="track" cx="60" cy="60" r="52"></circle>
+                <circle class="progress" cx="60" cy="60" r="52"></circle>
+              </svg>
+              <div>
+                <strong id="score-value">0</strong>
+                <span>/100</span>
+              </div>
+            </div>
+            <h3 id="score-label">Very Weak</h3>
+            <p id="score-summary">Start typing to see a complete security profile.</p>
+          </section>
+        </div>
+
+        <section class="widget-grid" aria-label="Live security widgets">
+          <article class="glass widget reveal"><i data-lucide="binary"></i><span>Entropy</span><strong id="entropy-widget">0 bits</strong></article>
+          <article class="glass widget reveal"><i data-lucide="timer"></i><span>Offline Attack</span><strong id="crack-widget">Instant</strong></article>
+          <article class="glass widget reveal"><i data-lucide="fingerprint"></i><span>Breach Status</span><strong id="breach-widget">Unchecked</strong></article>
+          <article class="glass widget reveal"><i data-lucide="blocks"></i><span>Diversity</span><strong id="diversity-widget">0 classes</strong></article>
+          <article class="glass widget reveal"><i data-lucide="database"></i><span>Search Space</span><strong id="space-widget">0</strong></article>
+          <article class="glass widget reveal"><i data-lucide="badge-check"></i><span>Security Grade</span><strong id="grade-widget">F</strong></article>
+        </section>
+
+        <div class="insight-grid">
+          <section class="glass reveal">
+            <div class="card-heading"><i data-lucide="list-checks"></i><h3>Character Breakdown</h3></div>
+            <ul id="checklist" class="checklist"></ul>
+          </section>
+
+          <section class="glass reveal">
+            <div class="card-heading"><i data-lucide="scan-search"></i><h3>Pattern Detection</h3></div>
+            <div id="patterns-list" class="finding-list" aria-live="polite"></div>
+          </section>
+
+          <section class="glass reveal">
+            <div class="card-heading"><i data-lucide="chart-no-axes-combined"></i><h3>Entropy Analysis</h3></div>
+            <dl class="metric-list">
+              <div><dt>Entropy</dt><dd id="entropy-value">0 bits</dd></div>
+              <div><dt>Estimated combinations</dt><dd id="combinations-value">0</dd></div>
+              <div><dt>Difficulty</dt><dd id="difficulty-value">Trivial</dd></div>
+            </dl>
+            <p class="muted">Entropy estimates how many guesses an attacker may need. Longer, less predictable passwords create a larger search space.</p>
+          </section>
+
+          <section class="glass reveal">
+            <div class="card-heading"><i data-lucide="clock-3"></i><h3>Crack Time Scenarios</h3></div>
+            <div id="crack-times" class="timeline"></div>
+          </section>
+        </div>
+
+        <section class="glass recommendations reveal">
+          <div class="card-heading"><i data-lucide="lightbulb"></i><h3>Security Recommendations</h3></div>
+          <div id="recommendations" class="recommendation-list"></div>
+        </section>
+      </section>
+
+      <section id="about" class="section">
+        <div class="section-heading reveal">
+          <p class="eyebrow">About password security</p>
+          <h2>Learn the Concepts</h2>
+        </div>
+        <div id="education-grid" class="education-grid"></div>
+      </section>
+
+      <section id="generator" class="section generator-section">
+        <div class="section-heading reveal">
+          <p class="eyebrow">Password generator</p>
+          <h2>Create Strong Secrets</h2>
+        </div>
+        <div class="generator-layout">
+          <section class="glass generator-card reveal" aria-labelledby="generator-title">
+            <h3 id="generator-title">Generator Controls</h3>
+            <label class="range-label" for="length-slider">Length <strong id="length-value">20</strong></label>
+            <input id="length-slider" type="range" min="8" max="64" value="20" />
+            <div class="toggle-grid">
+              <label><input id="gen-upper" type="checkbox" checked />Uppercase</label>
+              <label><input id="gen-lower" type="checkbox" checked />Lowercase</label>
+              <label><input id="gen-numbers" type="checkbox" checked />Numbers</label>
+              <label><input id="gen-symbols" type="checkbox" checked />Symbols</label>
+              <label><input id="gen-ambiguous" type="checkbox" />Avoid ambiguous</label>
+            </div>
+            <div class="action-row">
+              <button id="generate-password" class="button primary" type="button"><i data-lucide="refresh-cw"></i>Generate</button>
+              <button id="copy-generated" class="button subtle" type="button"><i data-lucide="copy"></i>Copy</button>
+            </div>
+          </section>
+          <section class="glass generated-output reveal" aria-live="polite">
+            <p class="eyebrow">Generated password</p>
+            <output id="generated-password"></output>
+            <dl class="metric-list">
+              <div><dt>Entropy</dt><dd id="generated-entropy">0 bits</dd></div>
+              <div><dt>Character space</dt><dd id="generated-space">0</dd></div>
+            </dl>
+          </section>
+        </div>
+      </section>
+
+      <section id="privacy" class="section">
+        <div class="section-heading reveal">
+          <p class="eyebrow">Privacy panel</p>
+          <h2>Designed to Keep Secrets Local</h2>
+        </div>
+        <div class="privacy-grid">
+          <article class="glass reveal"><i data-lucide="cpu"></i><h3>Everything runs locally</h3><p>Strength, entropy, pattern detection, and recommendations execute in your browser.</p></article>
+          <article class="glass reveal"><i data-lucide="shield-off"></i><h3>No password storage</h3><p>The app does not persist, log, or transmit the password you type.</p></article>
+          <article class="glass reveal"><i data-lucide="key-round"></i><h3>k-Anonymity breach checks</h3><p>Only the first five SHA-1 hash characters are sent to Have I Been Pwned, then matching happens locally.</p></article>
+        </div>
+      </section>
+
+      <section id="settings" class="section">
+        <div class="section-heading reveal">
+          <p class="eyebrow">Settings</p>
+          <h2>Theme</h2>
+        </div>
+        <section class="glass settings-card reveal" aria-label="Theme selection">
+          <div class="theme-options" role="radiogroup" aria-label="Theme">
+            <button class="theme-option active" data-theme="dark" type="button" role="radio" aria-checked="true">Dark</button>
+            <button class="theme-option" data-theme="cyber" type="button" role="radio" aria-checked="false">Cyber</button>
+            <button class="theme-option" data-theme="contrast" type="button" role="radio" aria-checked="false">High Contrast</button>
+          </div>
+        </section>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <span>CipherSense</span>
+      <span>Static, private, portfolio-ready cybersecurity dashboard.</span>
+    </footer>
+  </body>
+</html>
