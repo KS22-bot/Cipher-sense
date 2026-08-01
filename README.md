@@ -1,84 +1,180 @@
-# CipherSense
+<div align="center">
 
-CipherSense is a production-quality static cybersecurity web application for real-time password intelligence. It analyzes password strength, entropy, crack-time estimates, patterns, breach exposure, and secure generation without a backend.
+# 🔐 Cipher Sense
 
-## Features
+### Generate Smarter. Stay Safer.
 
-- Real-time password strength score with animated circular gauge
-- Entropy and estimated search-space analysis
-- Crack-time estimates for consumer hardware, GPUs, clusters, and offline attacks
-- Pattern detection for common passwords, dictionary words, sequences, keyboard walks, repeats, and date-like personal information
-- Have I Been Pwned password range API integration using browser-side SHA-1 and k-Anonymity
-- Secure password generator with length, character class, and ambiguous-character controls
-- Dynamic security recommendations with explanations
-- Educational expandable cards for password security concepts
-- Responsive glassmorphism dashboard with animated grid, particles, neon accents, and accessible focus states
-- Theme settings for Dark, Cyber, and High Contrast modes
+A modern cybersecurity web application focused on secure password generation, password analysis, and privacy-first security tools.
 
-## Screenshots
+Built with **React**, **TypeScript**, **TanStack Start**, and **Tailwind CSS**.
 
-Add screenshots after deployment:
+![License](https://img.shields.io/badge/license-MIT-blue)
+![React](https://img.shields.io/badge/React-19-61DAFB?logo=react)
+![TypeScript](https://img.shields.io/badge/TypeScript-5-blue?logo=typescript)
+![TailwindCSS](https://img.shields.io/badge/TailwindCSS-4-38BDF8?logo=tailwindcss)
 
-- `assets/dashboard.png`
-- `assets/generator.png`
-- `assets/mobile.png`
+</div>
 
-## Technology Stack
+---
 
-- HTML5
-- CSS3 with variables and responsive layout
-- Vanilla JavaScript ES6 modules
-- Web Crypto API
-- Have I Been Pwned Passwords API
-- Lucide Icons CDN
+## ✨ Overview
 
-## Installation
+Cipher Sense is a privacy-first cybersecurity toolkit designed to help users create stronger passwords, evaluate password security, and improve their overall digital safety.
 
-No build step is required. Open `index.html` in a browser or serve the folder with any static file server.
+Unlike traditional password generators, Cipher Sense focuses on **security education**, **real-time analysis**, and **modern UI/UX** while ensuring sensitive data never leaves the user's browser whenever possible.
 
-```bash
-python -m http.server 8000
+---
+
+## 🚀 Features
+
+### 🔑 Password Generator
+
+- Adjustable password length
+- Uppercase & lowercase support
+- Numbers & symbols
+- Exclude ambiguous characters
+- Prevent repeated characters
+- One-click copy
+- Instant regeneration
+
+---
+
+### 📊 Password Analyzer
+
+Analyze passwords for:
+
+- Strength score
+- Entropy
+- Character diversity
+- Dictionary words
+- Sequential characters
+- Keyboard patterns
+- Repeated characters
+- Estimated crack time
+
+---
+
+### 🛡️ Privacy First
+
+- Local password analysis
+- No password storage
+- No server-side logging
+- Secure clipboard support
+
+---
+
+### 📚 Security Education
+
+Learn best practices including:
+
+- Strong password habits
+- Multi-factor authentication
+- Password managers
+- Phishing awareness
+- Safe online practices
+
+---
+
+## 🖥️ Tech Stack
+
+| Technology | Purpose |
+|------------|---------|
+| React | UI |
+| TypeScript | Type Safety |
+| TanStack Start | Full-stack Framework |
+| Tailwind CSS | Styling |
+| Vite | Development Environment |
+
+---
+
+## 📁 Project Structure
+
+```
+Cipher-Sense/
+│
+├── .lovable/
+├── public/
+├── src/
+│
+├── .gitignore
+├── .prettierrc
+├── .prettierignore
+├── bun.lock
+├── bunfig.toml
+├── components.json
+├── eslint.config.js
+├── package.json
+├── tsconfig.json
+├── vite.config.ts
+└── README.md
 ```
 
-Then visit `http://localhost:8000`.
+---
 
-## GitHub Pages Deployment
+## ⚙️ Installation
 
-1. Push this repository to GitHub.
-2. Open repository settings.
-3. Go to Pages.
-4. Select the branch that contains `index.html`.
-5. Save and wait for GitHub Pages to publish.
+Clone the repository
 
-## Privacy Model
+```bash
+git clone https://github.com/yourusername/cipher-sense.git
+```
 
-CipherSense is designed to keep password analysis local:
+Navigate into the project
 
-- Passwords are never stored as plain text.
-- Passwords are never logged.
-- Strength, entropy, pattern checks, and recommendations run in the browser.
-- Theme preference is saved in `localStorage`.
-- The local reuse signal stores only a minimal non-secret fingerprint based on password length and edge character codes.
+```bash
+cd cipher-sense
+```
 
-## Have I Been Pwned Integration
+Install dependencies
 
-The breach checker uses the Have I Been Pwned Passwords API with k-Anonymity:
+```bash
+bun install
+```
 
-1. The browser hashes the password locally with SHA-1 using the Web Crypto API.
-2. Only the first five characters of the SHA-1 hash are sent to HIBP.
-3. HIBP returns matching hash suffixes for that prefix.
-4. CipherSense compares suffixes locally.
+or
 
-The app never sends the full password or complete SHA-1 hash.
+```bash
+npm install
+```
 
-## Future Improvements
+Start the development server
 
-- Add screenshot assets for the README.
-- Add optional passphrase generation.
-- Add exportable security reports that redact the password.
-- Add localization.
-- Add automated accessibility tests.
+```bash
+bun run dev
+```
 
-## License
+or
 
-MIT License
+```bash
+npm run dev
+```
+
+---
+
+## 🎯 Future Roadmap
+
+- Password breach checker
+- Secure passphrase generator
+- Password history
+- Browser-based encryption tools
+- Password policy checker
+- Secure notes
+- Dark/Light theme
+- Accessibility improvements
+
+---
+
+## 🔒 Security Philosophy
+
+Cipher Sense follows a privacy-first approach.
+
+- Passwords should never be stored.
+- Password analysis should happen locally whenever possible.
+- Sensitive information should never be transmitted unnecessarily.
+- User privacy always comes first.
+
+---
+
+## 📄 License
+
+This project is licensed under the MIT License.
